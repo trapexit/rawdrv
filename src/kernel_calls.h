@@ -1,7 +1,10 @@
-#ifndef _kernel_calls_h
-#define _kernel_calls_h
+#ifndef KERNEL_CALLS_H_INCLUDED
+#define KERNEL_CALLS_H_INCLUDED
+
+#include "portfolio.h"
 
 extern void  svc_kprintf(const char *fmt, ... );
+extern void  svc_yield(void);
 extern Item  svc_createitem(int32 ctype,TagArg *p);
 extern Err   svc_deleteitem(Item i);
 extern Item  svc_finditem(int32 ctype,TagArg *tp);
@@ -12,7 +15,6 @@ extern Err   svc_setitemowner(Item i,Item newOwner);
 extern int32 svc_lockitem(Item s,uint32 flags);
 extern Err   svc_unlockitem(Item s);
 extern Item  svc_findandopenitem(int32 ctype,TagArg *tp);
-
 
 extern Node *svc_remhead(List *l);
 extern Node *svc_remtail(List *l);
@@ -27,10 +29,9 @@ extern void *svc_allocmem(int32 size, uint32 memflags);
 extern void svc_freemem(void *p, int32 size);
 extern int32 svc_scavengemem(void);
 extern void svc_memset(void *dest, int32 value, int32 size);
-extern void svc_memcpy(void *dest, void *src, int32 size);
+extern void *svc_memcpy(void *dest, void *src, int32 size);
 extern int32 svc_getpagesize(uint32 typebits);
 
 extern void *svc_locateitem(Item i);
-
 
 #endif
